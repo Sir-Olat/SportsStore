@@ -36,7 +36,7 @@ const resolveOrders = (onlyUnshipped, { page, pageSize, sort }, { db }) => {
 }
 
 const orders = ({onlyUnshipped = false}, { db }) => ({
-  totalSize: () => db.het("orders")
+  totalSize: () => db.get("orders")
     .filter(o => onlyUnshipped ? o.shipped === false : o).size().value(),
   orders: (...args) => resolveOrders(onlyUnshipped, ...args)
 })
